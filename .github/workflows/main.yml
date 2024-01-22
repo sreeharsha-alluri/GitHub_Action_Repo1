@@ -16,5 +16,5 @@ jobs:
       # Your existing build steps go here
 
       - name: Trigger Workflow in Second Repository
-        run: gh repo dispatch --repo <owner>/<repo2> --event <custom-event-name>
+        run: gh repo dispatch --repo sreeharsha-alluri/GitHub_Action_Repo2 --event trigger_automatically
         # Or use curl or other methods to dispatch the event
