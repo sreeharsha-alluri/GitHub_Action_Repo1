@@ -1,11 +1,11 @@
-name: Main Workflow 
+name: Main Workflow
 
 on:
   push:
     branches:
       - main
 
-  workflow_dispatch: # Add this section
+  workflow_dispatch:
     inputs:
       trigger_manually:
         description: 'Trigger manually'
@@ -20,3 +20,11 @@ jobs:
         uses: actions/checkout@v2
 
       # Your existing build steps go here
+
+      - name: Trigger Workflow in Repository 2
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/sreeharsha-alluri/GitHub_Action_Repo2/dispatches \
+            -d '{"event_type": "trigger_automatically"}'
