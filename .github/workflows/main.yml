@@ -24,7 +24,7 @@ jobs:
       - name: Trigger Workflow in Repository 2
         run: |
           curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.PAT }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/sreeharsha-alluri/GitHub_Action_Repo2/dispatches \
-            -d '{"event_type": "trigger_automatically"}'
+            https://api.github.com/repos/sreeharsha-alluri/GitHub_Action_Repo2/actions/workflows/Triggered_Workflow.yml/dispatches \
+            -d '{"ref": "main"}'
