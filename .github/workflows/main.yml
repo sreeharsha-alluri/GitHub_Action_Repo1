@@ -16,4 +16,9 @@ jobs:
       # Your existing build steps go here
 
       - name: Trigger Workflow in Repository 2
-        run: gh workflow run Triggered_Workflow.yml -R sreeharsha-alluri/GitHub_Action_Repo2 -F trigger_automatically=true
+        run: |
+          gh api repos/sreeharsha-alluri/GitHub_Action_Repo2/dispatches \
+              -X POST \
+              -H "Accept: application/vnd.github.everest-preview+json" \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -d '{"event_type": "trigger_automatically"}'
